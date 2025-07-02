@@ -3,6 +3,7 @@ package test.citron.search.view
 import android.util.Log
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -20,7 +21,6 @@ import test.citron.domain.usecase.SearchCityUseCase
 import test.citron.foundation.mvvm.StateFullViewModel
 import test.citron.foundation.result.onError
 import test.citron.foundation.result.onSuccess
-import javax.inject.Inject
 
 @HiltViewModel
 class SearchViewModel
@@ -133,14 +133,13 @@ constructor(
             .onSuccess {
                 updateState {
                     it.copy(
-                        results =
-                            it.results?.map { stored ->
-                                if (stored.id == result.id) {
-                                    stored.copy(isFavorite = true)
-                                } else {
-                                    stored
-                                }
+                        results = it.results?.map { stored ->
+                            if (stored.id == result.id) {
+                                stored.copy(isFavorite = true)
+                            } else {
+                                stored
                             }
+                        }
                     )
                 }
             }

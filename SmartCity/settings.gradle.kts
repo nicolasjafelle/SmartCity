@@ -19,7 +19,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "SmartCitiy"
+rootProject.name = "SmartCity"
 include(":app")
 include(":foundation")
 include(":maps")
