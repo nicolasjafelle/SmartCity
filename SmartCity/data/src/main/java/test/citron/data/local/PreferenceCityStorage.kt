@@ -3,6 +3,9 @@ package test.citron.data.local
 import android.content.SharedPreferences
 import androidx.core.content.edit
 
+/**
+ * Implementation of [FavoriteLocalStorage] using SharedPreferences.
+ */
 internal class PreferenceCityStorage(private val sharedPreferences: SharedPreferences) :
     FavoriteLocalStorage {
     override suspend fun store(favoriteListId: Set<Long>) {

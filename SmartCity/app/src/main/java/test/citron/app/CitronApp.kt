@@ -30,6 +30,9 @@ fun CitronApp(deviceCapability: DeviceCapability) {
     }
 }
 
+/**
+ * NavHost for portrait devices
+ */
 @Composable
 private fun CitronPortraitNavHost(navController: NavHostController) {
     NavHost(navController = navController, startDestination = SearchNavBuilder.entryPoint) {
@@ -40,6 +43,9 @@ private fun CitronPortraitNavHost(navController: NavHostController) {
     }
 }
 
+/**
+ * NavHost for landscape devices
+ */
 @Composable
 private fun CitronLandscapeNavHost(navController: NavHostController) {
     NavHost(navController = navController, startDestination = SearchNavBuilder.entryPoint) {
@@ -51,6 +57,9 @@ private fun CitronLandscapeNavHost(navController: NavHostController) {
     }
 }
 
+/**
+ * NavHost for book mode devices in foldables.
+ */
 @Composable
 private fun CitronBookModeNavHost(navController: NavHostController) {
     NavHost(navController = navController, startDestination = SearchNavBuilder.entryPoint) {
@@ -61,6 +70,9 @@ private fun CitronBookModeNavHost(navController: NavHostController) {
     }
 }
 
+/**
+ * NavHost for tabletop mode devices in foldables.
+ */
 @Composable
 private fun CitronTabletopNavHost(navController: NavHostController) {
     NavHost(navController = navController, startDestination = SearchNavBuilder.entryPoint) {
@@ -78,6 +90,9 @@ enum class DeviceCapability {
     Tabletop // fold vertical + half-opened
 }
 
+/**
+ * Returns the current device capability.
+ */
 @Composable
 fun rememberScreenCapabilities(): DeviceCapability {
     val context = LocalContext.current

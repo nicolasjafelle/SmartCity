@@ -17,7 +17,26 @@ import io.ktor.serialization.kotlinx.json.json
 import java.util.concurrent.TimeUnit
 import kotlinx.serialization.json.Json
 
+/**
+ * Provides a fluent builder for constructing a configured instance of [HttpClient] using Ktor and OkHttp.
+ *
+ * This class encapsulates configuration related to base URL, API version, timeouts, content negotiation,
+ * logging, and default headers.
+ *
+ * Example usage:
+ * ```
+ * val client = KtorClient.Builder()
+ *     .setBaseUrl("https://api.example.com")
+ *     .setApiVersion("v1")
+ *     .setTimeout(15_000)
+ *     .build()
+ * ```
+ */
 class KtorClient private constructor() {
+
+    /**
+     * Builder class for configuring and creating a [HttpClient] instance in Ktor.
+     */
     class Builder {
         private var baseUrl: String = ""
             set(value) {
@@ -37,6 +56,11 @@ class KtorClient private constructor() {
 
         fun setTimeout(timeout: Long) = apply { this.timeout = timeout }
 
+        /**
+         * Builds and returns a configured [HttpClient] instance with the provided settings.
+         *
+         * @return A configured [HttpClient].
+         */
         fun build(): HttpClient {
             val finalBaseUrl = this@Builder.baseUrl + this@Builder.apiVersion
 

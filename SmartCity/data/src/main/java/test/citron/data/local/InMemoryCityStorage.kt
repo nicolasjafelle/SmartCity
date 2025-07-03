@@ -4,6 +4,13 @@ import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import test.citron.domain.model.City
 
+/**
+ * In-memory implementation of [CityLocalStorage] which means simple use memory ram access.
+ * If the process is killed, all data will be lost.
+ *
+ * Thread safety is ensured through the use of a [Mutex] to protect
+ * concurrent access to the internal cache.
+ */
 internal class InMemoryCityStorage : CityLocalStorage {
     private var cache: MutableList<City>? = null
 

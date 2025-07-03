@@ -12,6 +12,16 @@ import com.google.maps.android.compose.Marker
 import com.google.maps.android.compose.rememberCameraPositionState
 import com.google.maps.android.compose.rememberUpdatedMarkerState
 
+/**
+ * Composable which draw a map.
+ *
+ * @param modifier Modifier to apply to the layout.
+ * @param latitude Latitude of the marker. Could be null in which case no marker is drawn.
+ * @param longitude Longitude of the marker. Could be null in which case no marker is drawn.
+ * @param zoomLevel Zoom level of the map.
+ * @param onMapLoaded Callback to be invoked when the map is loaded.
+ * @param content Content to be drawn on top of the map.
+ */
 @Composable
 fun DrawMaps(
     modifier: Modifier,

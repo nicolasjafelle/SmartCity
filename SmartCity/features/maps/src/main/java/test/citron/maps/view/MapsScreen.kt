@@ -28,6 +28,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.Lifecycle
@@ -57,6 +58,7 @@ fun MapsScreen(
             is MapsScreenSideEffect.NavigateNext -> snackbarHostState.showSnackbar(
                 "not implemented"
             )
+
             is MapsScreenSideEffect.ShowError -> snackbarHostState.showSnackbar(sideEffect.message)
         }
     }
@@ -200,5 +202,32 @@ private fun DrawContentLoading(
 
             )
         }
+    }
+}
+
+@Composable
+@Preview(showSystemUi = true, showBackground = true)
+private fun DrawContentLoadingPreview() {
+    CitronTheme {
+        DrawContentLoading(
+            modifier = Modifier,
+            innerPadding = PaddingValues(0.dp),
+            onMapLoaded = {}
+        )
+    }
+}
+
+@Composable
+@Preview(showSystemUi = true, showBackground = true)
+private fun DrawContentMapPreview() {
+    CitronTheme {
+        DrawContentMap(
+            modifier = Modifier,
+            innerPadding = PaddingValues(0.dp),
+            isFavorite = true,
+            label = "Central Park",
+            latitude = 40.7829,
+            longitude = -73.9654
+        )
     }
 }

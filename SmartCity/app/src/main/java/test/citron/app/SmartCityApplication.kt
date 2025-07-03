@@ -5,5 +5,5 @@ import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
 class SmartCityApplication : Application() {
-    //
+    // Not Needed for this app
 }
