@@ -38,34 +38,43 @@ class RemoveFavoriteUseCaseTest {
     @Test
     fun `invoke should return Success true when repository removes favorite successfully`() =
         runTest {
+            // Given
             val cityId = 1L
             coEvery { repository.removeFavorite(cityId) } returns true
 
+            // When
             val result = useCase.invoke(cityId)
 
+            // Then
             result shouldBe Result.Success(true)
             coVerify(exactly = 1) { repository.removeFavorite(cityId) }
         }
 
     @Test
     fun `invoke should return Error Unknown when repository fails to remove favorite`() = runTest {
+        // Given
         val cityId = 1L
         coEvery { repository.removeFavorite(cityId) } returns false
 
+        // When
         val result = useCase.invoke(cityId)
 
+        // Then
         result shouldBe Result.Error(CityError.Unknown)
         coVerify(exactly = 1) { repository.removeFavorite(cityId) }
     }
 
     @Test
     fun `invoke should return Error when repository throws exception`() = runTest {
+        // Given
         val cityId = 1L
         val exception = RuntimeException("DB write error")
         coEvery { repository.removeFavorite(cityId) } throws exception
 
+        // When
         val result = useCase.invoke(cityId)
 
+        // Then
         result shouldBe Result.Error(CityError.Unknown)
         coVerify(exactly = 1) { repository.removeFavorite(cityId) }
         coVerify(exactly = 1) { CityErrorHandler.handleError<CityError>(exception) }

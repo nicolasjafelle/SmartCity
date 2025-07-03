@@ -37,34 +37,43 @@ class AddFavoriteUseCaseTest {
 
     @Test
     fun `invoke should return Success true when repository adds favorite successfully`() = runTest {
+        // Given
         val cityId = 1L
         coEvery { repository.addFavorite(cityId) } returns true
 
+        // When
         val result = useCase.invoke(cityId)
 
+        // Then
         result shouldBe Result.Success(true)
         coVerify(exactly = 1) { repository.addFavorite(cityId) }
     }
 
     @Test
     fun `invoke should return Error Unknown when repository fails to add favorite`() = runTest {
+        // Given
         val cityId = 1L
         coEvery { repository.addFavorite(cityId) } returns false
 
+        // When
         val result = useCase.invoke(cityId)
 
+        // Then
         result shouldBe Result.Error(CityError.Unknown)
         coVerify(exactly = 1) { repository.addFavorite(cityId) }
     }
 
     @Test
     fun `invoke should return Error when repository throws exception`() = runTest {
+        // Given
         val cityId = 1L
         val exception = RuntimeException("Network error")
         coEvery { repository.addFavorite(cityId) } throws exception
 
+        // When
         val result = useCase.invoke(cityId)
 
+        // Then
         result shouldBe Result.Error(CityError.Unknown)
         coVerify(exactly = 1) { repository.addFavorite(cityId) }
         coVerify(exactly = 1) { CityErrorHandler.handleError<CityError>(exception) }

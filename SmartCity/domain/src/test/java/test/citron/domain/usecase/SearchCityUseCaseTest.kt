@@ -66,20 +66,24 @@ class SearchCityUseCaseTest {
 
     @Test
     fun `invoke should emit Success with list when repository search is successful`() = runTest {
+        // Given
         val aSearch = "Buenos"
         val expectedList = dummyCityList
-
         coEvery { repository.searchCity(aSearch) } returns flowOf(expectedList)
 
+        // When
         useCase.invoke(aSearch).test {
             awaitItem() shouldBe Result.Success(expectedList)
             awaitComplete()
         }
+
+        // Then
         coVerify(exactly = 1) { repository.searchCity(aSearch) }
     }
 
     @Test
     fun `invoke should emit Error when repository search throws exception`() = runTest {
+        // Given
         val aSearch = "Error"
         val exception = RuntimeException("Search API failed")
         val expectedError = Result.Error<CityError>(CityError.Unknown)
@@ -87,11 +91,13 @@ class SearchCityUseCaseTest {
         coEvery { repository.searchCity(aSearch) } returns flow { throw exception }
         every { CityErrorHandler.handleError<CityError>(exception) } returns expectedError
 
+        // When
         useCase.invoke(aSearch).test {
             awaitItem() shouldBe CityErrorHandler.handleError<CityError>(exception)
             awaitComplete()
         }
 
+        // Then
         coVerify(exactly = 1) { repository.searchCity(aSearch) }
         coVerify(exactly = 1) { CityErrorHandler.handleError<CityError>(exception) }
     }

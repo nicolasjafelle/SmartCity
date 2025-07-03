@@ -38,21 +38,27 @@ class FetchCityListUseCaseTest {
     @Test
     fun `invoke should return Success true when repository fetches city list successfully`() =
         runTest {
+            // Given
             coEvery { repository.fetchCityList() } returns true
 
+            // When
             val result = useCase.invoke()
 
+            // Then
             result shouldBe Result.Success(true)
             coVerify(exactly = 1) { repository.fetchCityList() }
         }
 
     @Test
     fun `invoke should return Error when repository throws exception during fetch`() = runTest {
+        // Given
         val exception = RuntimeException("Database error")
         coEvery { repository.fetchCityList() } throws exception
 
+        // When
         val result = useCase.invoke()
 
+        // Then
         result shouldBe Result.Error(CityError.Unknown)
         coVerify(exactly = 1) { repository.fetchCityList() }
         coVerify(exactly = 1) { CityErrorHandler.handleError<CityError>(exception) }

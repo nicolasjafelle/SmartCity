@@ -49,34 +49,43 @@ class GetCityUseCaseTest {
 
     @Test
     fun `invoke should return Success City when city is found`() = runTest {
+        // Given
         val cityId = 1L
         coEvery { repository.findById(cityId) } returns dummyCity
 
+        // When
         val result = useCase.invoke(cityId)
 
+        // Then
         result shouldBe Result.Success(dummyCity)
         coVerify(exactly = 1) { repository.findById(cityId) }
     }
 
     @Test
     fun `invoke should return Error CityNotFound when city is not found`() = runTest {
+        // Given
         val cityId = 99L
         coEvery { repository.findById(cityId) } returns null
 
+        // When
         val result = useCase.invoke(cityId)
 
+        // Then
         result shouldBe Result.Error(CityError.CityNotFound)
         coVerify(exactly = 1) { repository.findById(cityId) }
     }
 
     @Test
     fun `invoke should return Error when repository throws exception`() = runTest {
+        // Given
         val cityId = 1L
         val exception = IllegalStateException("DB connection lost")
         coEvery { repository.findById(cityId) } throws exception
 
+        // When
         val result = useCase.invoke(cityId)
 
+        // Then
         result shouldBe Result.Error(CityError.Unknown)
         coVerify(exactly = 1) { repository.findById(cityId) }
         coVerify(exactly = 1) { CityErrorHandler.handleError<CityError>(exception) }
