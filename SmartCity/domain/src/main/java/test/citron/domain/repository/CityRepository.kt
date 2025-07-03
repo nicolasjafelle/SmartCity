@@ -5,8 +5,6 @@ import test.citron.domain.model.City
 
 interface CityRepository {
 
-    val cachedCityList: Flow<List<City>?>
-
     suspend fun fetchCityList(): Boolean
 
     suspend fun store(citiList: List<City>)

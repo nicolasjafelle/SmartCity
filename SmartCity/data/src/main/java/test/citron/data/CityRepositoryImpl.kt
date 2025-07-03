@@ -1,9 +1,6 @@
 package test.citron.data
 
-import android.util.Log
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.flow
 import test.citron.data.api.CityApiClient
 import test.citron.data.entity.CityResponse
@@ -19,13 +16,10 @@ internal class CityRepositoryImpl(
     private val favoriteLocalStorage: FavoriteLocalStorage
 ) : CityRepository {
 
-    override val cachedCityList: Flow<List<City>?> = MutableStateFlow(null).asStateFlow()
-
     override suspend fun fetchCityList(): Boolean {
         var storedList = localDataSource.get()
 
         if (storedList == null) {
-            Log.i("NICOLASJ", "fetchCityList")
             apiClient.getCityList().map {
                 it.toDomain()
             }.also {
@@ -51,13 +45,9 @@ internal class CityRepositoryImpl(
         localDataSource.getById(id)?.copy(isFavorite = favoriteLocalStorage.findById(id))
 
     override suspend fun searchCity(query: String): Flow<List<City>> = flow {
-        Log.i("NICOLASJ", "QUERY IS $query")
         localDataSource.get()?.let { fullList ->
-
-            Log.i("NICOLASJ", "FULL LIST SIZE ${fullList.size}")
             emit(searchAndSort(query, fullList))
         } ?: apiClient.getCityList().map {
-            Log.i("NICOLASJ", "FETCH INSIDE SEARCH CITY")
             it.toDomain()
         }.also { fullList ->
             localDataSource.store(fullList)
@@ -71,6 +61,7 @@ internal class CityRepositoryImpl(
 
     override suspend fun clear() {
         localDataSource.clear()
+        favoriteLocalStorage.clear()
     }
 
     override suspend fun addFavorite(id: Long): Boolean = favoriteLocalStorage.addFavorite(id)

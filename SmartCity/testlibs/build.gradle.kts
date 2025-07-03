@@ -33,6 +33,9 @@ android {
         }
     }
 
+    /******************************************************************
+     **** Copy the testOptions block at build.gradle module level *****
+     ******************************************************************/
     testOptions {
         unitTests.all { test ->
             test.useJUnitPlatform() // <--- THIS IS CRUCIAL FOR JUNIT 5

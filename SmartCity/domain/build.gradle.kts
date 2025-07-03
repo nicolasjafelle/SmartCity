@@ -47,7 +47,7 @@ android {
 
     testOptions {
         unitTests.all { test ->
-            test.useJUnitPlatform() // <--- THIS IS CRUCIAL FOR JUNIT 5
+            test.useJUnitPlatform() // JUnit 5
         }
     }
 }
@@ -70,8 +70,4 @@ dependencies {
 
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
-
-//    testImplementation(platform(libs.junit.bom))
-//    testImplementation(libs.junit.jupiter)
-//    testRuntimeOnly(libs.junit.platform.launcher)
 }

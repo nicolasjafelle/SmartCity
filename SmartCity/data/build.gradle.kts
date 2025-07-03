@@ -45,11 +45,18 @@ android {
             jvmTarget.set(JvmTarget.JVM_11)
         }
     }
+
+    testOptions {
+        unitTests.all { test ->
+            test.useJUnitPlatform() // JUnit 5
+        }
+    }
 }
 
 dependencies {
     implementation(project(":foundation"))
     implementation(project(":domain"))
+    implementation(project(":testlibs"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
