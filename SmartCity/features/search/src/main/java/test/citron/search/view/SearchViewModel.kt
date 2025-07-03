@@ -37,6 +37,7 @@ constructor(
     private val debounceTimeout = 400L
     private var job: Job? = null
 
+    // Useful to sync state between prefetch and search operations.
     private val prefetchStatus = MutableStateFlow(false)
 
     override fun onPrefetch() {

@@ -44,10 +44,17 @@ android {
             jvmTarget.set(JvmTarget.JVM_11)
         }
     }
+
+    testOptions {
+        unitTests.all { test ->
+            test.useJUnitPlatform() // <--- THIS IS CRUCIAL FOR JUNIT 5
+        }
+    }
 }
 
 dependencies {
     implementation(project(":foundation"))
+    implementation(project(":testlibs"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
@@ -64,5 +71,7 @@ dependencies {
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
 
-    testImplementation(libs.junit)
+//    testImplementation(platform(libs.junit.bom))
+//    testImplementation(libs.junit.jupiter)
+//    testRuntimeOnly(libs.junit.platform.launcher)
 }

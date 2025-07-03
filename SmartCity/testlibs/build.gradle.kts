@@ -32,6 +32,12 @@ android {
             jvmTarget.set(JvmTarget.JVM_11)
         }
     }
+
+    testOptions {
+        unitTests.all { test ->
+            test.useJUnitPlatform() // <--- THIS IS CRUCIAL FOR JUNIT 5
+        }
+    }
 }
 
 dependencies {
@@ -46,11 +52,12 @@ dependencies {
      ******************************************************************
      ************************* IMPORTANT ******************************
      ******************************************************************/
-    api(libs.junit.jupiter.api)
-    api(libs.junit.jupiter.params)
+    api(platform(libs.junit.bom)) // BOM para JUnit
+    api(libs.junit.jupiter)
     api(libs.mockk)
     api(libs.kotest.assertions.core)
     api(libs.kotlinx.coroutines.test)
     api(libs.fixture)
-    testRuntimeOnly(libs.junit.jupiter.engine)
+    api(libs.turbine)
+    runtimeOnly(libs.junit.platform.launcher)
 }
