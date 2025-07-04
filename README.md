@@ -133,7 +133,7 @@ Notable missing due to lack of time:
 
 ## 🌿 Gitflow Workflow
 
-This project follows to a simplified Gitflow branching model to manage development and releases effectively.
+This project follows a simplified **Gitflow** branching model to manage development and releases effectively.
 
 * **`main` branch:**
     * This branch represents the **production-ready, stable codebase**.
