@@ -2,7 +2,9 @@
 
 ## 🙌 Introduction
 
-Smart City is a well organized android project aimed to deliver fast pacing development by splitting crucial development in modules and provides out of the box integration with latest Junit libs. It also adds basic CI integration with Github Actions.
+**Smart City App**, codenamed **Citron**, is a well-organized Android project designed to facilitate **rapid and efficient development**. It achieves this by splitting the codebase into **dedicated modules**, ensuring a clear separation of concerns.
+
+The project features **pre-configured** integration with the latest JUnit 5 test suite and includes basic **Continuous Integration (CI) automation via GitHub Actions**, promoting code quality and a streamlined development workflow.
 
 ## ✨ Features
 
@@ -60,7 +62,7 @@ Assuming github ssh is already added
 ## 🗂️ Project Structure and Modules
 Following is the project structure sorted by Android Studio "Android" view
 ```
-SmartCity Root
+Citron Root
   |--- app 
   |--- data
   |--- design
@@ -86,7 +88,7 @@ SmartCity Root
 
 ## 📐 Project Architecture
 
-Smart City's architecture is based on **Clean Architecture** with the **MVVM (Model-View-ViewModel)** pattern applied in the presentation layer. As a result, the project is well-structured **into dedicated modules** that prioritize **SOLID principles**, fostering easy understanding and maintainability of each module's purpose.
+Citron's architecture is based on **Clean Architecture** with the **MVVM (Model-View-ViewModel)** pattern applied in the presentation layer. As a result, the project is well-structured **into dedicated modules** that prioritize **SOLID principles**, fostering easy understanding and maintainability of each module's purpose.
 
 ### Project's Clean Architecture diagram
 ![clean_arch](https://github.com/nicolasjafelle/SmartCity/blob/feature/readme/resources/clean_arch.png)
@@ -114,7 +116,7 @@ Ktlint is a static code analysis tool (linter) specifically designed for Kotlin 
 
 ### Unit testing
 
-Smart City is configured to build unit tests using the **JUnit 5** test suite, providing a robust framework for test execution. To facilitate advanced mocking capabilities for dependencies, we leverage **MockK** lib. Asynchronous operations and `Kotlin Flow`s are thoroughly tested using **Kotlin Coroutines Test** and **Turbine**, ensuring reliable validation of reactive streams and suspend functions.
+Citron is configured to build unit tests using the **JUnit 5** test suite, providing a robust framework for test execution. To facilitate advanced mocking capabilities for dependencies, we leverage **MockK** lib. Asynchronous operations and `Kotlin Flow`s are thoroughly tested using **Kotlin Coroutines Test** and **Turbine**, ensuring reliable validation of reactive streams and suspend functions.
 As of today unit test are present in:
 * AddFavoriteUseCase
 * FetchCityListUseCase
@@ -128,3 +130,45 @@ Notable missing due to lack of time:
 * CityLocalStorage
 * favoriteLocalStorage
 * ViewModels
+
+## 🌿 Gitflow Workflow
+
+This project follows to a simplified Gitflow branching model to manage development and releases effectively.
+
+* **`main` branch:**
+    * This branch represents the **production-ready, stable codebase**.
+    * It should **always reflect the latest stable release** of the application.
+    * Direct commits to `main` are strictly prohibited. Updates to `main` occur only through merges from the `develop` branch (for new features/releases) or dedicated hotfix branches (for urgent bug fixes).
+
+* **`develop` branch:**
+    * This is the **primary branch for ongoing development**.
+    * All new features, bug fixes, and improvements are integrated here.
+    * **All Pull Requests (PRs)** from feature branches or bugfix branches **must be merged into the `develop` branch**. This ensures that all new code is thoroughly reviewed and integrated before being considered for a release.
+
+* **Feature Branches:**
+    * New features are developed in dedicated branches branched off `develop` (e.g., `feature/my-new-feature`).
+    * Once a feature is complete and reviewed, it's merged back into `develop`.
+
+* **Hotfix Branches (Optional, for urgent fixes):**
+    * For critical bugs in production, hotfix branches can be created directly from `main` (e.g., `hotfix/fix-critical-bug`).
+    * Once fixed, they are merged back into both `main` (for immediate release) and `develop` (to ensure the fix is included in future development).
+
+**Typical Workflow:**
+
+1.  Branch `feature/your-feature` from `develop`.
+2.  Develop your feature.
+3.  Create a Pull Request from `feature/your-feature` to `develop`.
+4.  After review and approval, merge the PR into `develop`.
+5.  When `develop` is stable and ready for a release, it's merged into `main`.
+
+```
+main <--- (Merge develop for release)
+^
+|
+develop <--- (Merge feature branches here)
+^   ^
+|   |
+|   feature/my-feature
+|
+feature/another-feature
+```
