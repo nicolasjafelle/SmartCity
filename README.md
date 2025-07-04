@@ -1,4 +1,4 @@
-# SmartCity ![android_ci](https://github.com/github/docs/actions/workflows/android.yml/badge.svg)
+# SmartCity ![android_ci](https://github.com/nicolasjafelle/SmartCity/actions/workflows/android.yml/badge.svg)
 
 ## 🙌 Introduction
 
@@ -24,7 +24,7 @@ Build #AI-251.26094.121.2512.13699665, built on June 26, 2025
 * Kotlin 2.2.0
 * Android Gradle Plugin 8.1 or later
 
-## How To install guide
+## 📖 How To install guide
 
 ### Clone the repository
 ```
@@ -84,22 +84,33 @@ SmartCity Root
 * **:maps**: this module encapsulates the chosen maps platform (e.g., Google Maps, Mapbox). It provides a bridge implementation that decouples the domain and feature modules from the specific map SDK details, ensuring platform independence for mapping functionalities.
 * **:testlibs**: this module provides proper implementation to be able to add Junit 5 test suite accross all modules.
 
-## Project Architecture
+## 📐 Project Architecture
 
 Smart City's architecture is based on **Clean Architecture** with the **MVVM (Model-View-ViewModel)** pattern applied in the presentation layer. As a result, the project is well-structured **into dedicated modules** that prioritize **SOLID principles**, fostering easy understanding and maintainability of each module's purpose.
 
 ### Project's Clean Architecture diagram
-
+![clean_arch](https://github.com/nicolasjafelle/SmartCity/blob/feature/readme/resources/clean_arch.png)
 
 ### Presentation Diagram
+![ui_updates](https://github.com/nicolasjafelle/SmartCity/blob/feature/readme/resources/ui_updates.png)
 
-## Continous Integration
+## 🚆 Continous Integration
 
 For a simple yet effective Continuous Integration (CI) workflow, this project leverages GitHub Actions. Our built-in basic pipeline is configured to automatically build the application, execute all unit tests, and perform static code analysis on every code push, ensuring immediate feedback on code quality and preventing regressions.
 
 ### KtLint - Linter tool
 
 Ktlint is a static code analysis tool (linter) specifically designed for Kotlin code. Its primary purpose in Android development (and any Kotlin project) is to enforce a consistent coding style and identify potential code quality issues without actually compiling or running the code. 
+
+### CI Steps
+
+```
+1. Setup environment with Java JDK 17
+2. Give gradlew bash execution permissions
+3. Run ktlint check to keep code style in check with code quality standards
+4. Run all unit test in the project
+5. Build debug variant
+```
 
 ### Unit testing
 
@@ -117,13 +128,3 @@ Notable missing due to lack of time:
 * CityLocalStorage
 * favoriteLocalStorage
 * ViewModels
-
-### CI Steps
-
-```
-1. Setup environment with Java JDK 17
-2. Give gradlew bash execution permissions
-3. Run ktlint check to keep code style in check with code quality standards
-4. Run all unit test in the project
-5. Build debug variant
-```
