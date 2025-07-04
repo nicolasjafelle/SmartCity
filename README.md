@@ -82,7 +82,7 @@ SmartCity Root
 * **:features:maps**: module related to the "Presentation Layer" in a Clean Architecture skeleton. Presentation layer should be "connected" with "Domain Layer" but not with "Data Layer". This module represents everything related to maps capabilities and provides how to navigate.
 * **:foundation**: module core which contains the core foundations of the project such as MVVM way of work, core navigation interfaces, networking client and API provider. 
 * **:maps**: this module encapsulates the chosen maps platform (e.g., Google Maps, Mapbox). It provides a bridge implementation that decouples the domain and feature modules from the specific map SDK details, ensuring platform independence for mapping functionalities.
-* **:testlibs**: this module provides proper implementation to be able to add Junit 5 test suite accross all modules.
+* **:testlibs**: this module provides proper implementation to be able to add Junit 5 test suite across all modules.
 
 ## 📐 Project Architecture
 
