@@ -63,7 +63,10 @@ android {
 dependencies {
     implementation(project(":foundation"))
     implementation(project(":design"))
+
+    // Clean Architecture
     implementation(project(":domain"))
+    implementation(project(":data"))
 
     implementation(project(":features:search"))
     implementation(project(":features:maps"))
@@ -93,6 +96,5 @@ dependencies {
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
 
-    androidTestImplementation(platform(libs.androidx.compose.bom))
     debugImplementation(libs.androidx.ui.tooling)
 }

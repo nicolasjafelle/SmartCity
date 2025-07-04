@@ -45,7 +45,6 @@ dependencies {
     implementation(project(":foundation"))
     implementation(project(":design"))
     implementation(project(":domain"))
-    implementation(project(":data"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
