@@ -61,16 +61,16 @@ Assuming github ssh is already added
 Following is the project structure sorted by Android Studio "Android" view
 ```
 SmartCity Root
-	|--- app 
-	|--- data
-	|--- design
-	|--- domain
-	|--- features
-			|--- search
-			|--- maps
-	|--- foundation
-	|--- maps
-	|--- testlibs
+  |--- app 
+  |--- data
+  |--- design
+  |--- domain
+  |--- features
+        |--- search
+        |--- maps
+  |--- foundation
+  |--- maps
+  |--- testlibs
 ```
 #### Module Breakdown
 
